@@ -4,9 +4,11 @@ import "aos/dist/aos.css";
 import AOS from "aos";
 import Login from "./Login";
 import Signin from "./Signin";
+import DashBoard from "./DashBoard"; // Import DashBoard
 
 function App() {
   const navigate = useNavigate();
+  const isLoggedIn = Boolean(localStorage.getItem("isLoggedIn")); // Check login status
 
   useEffect(() => {
     AOS.init({ duration: 1000 });
@@ -38,11 +40,14 @@ function App() {
               <div className="flex items-center gap-4">
                 <button
                   className="text-black font-medium"
-                  onClick={() => navigate("/login")}
+                  onClick={() => navigate(isLoggedIn ? "/dashboard" : "/login")}
                 >
                   Log in
                 </button>
-                <button className="bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800 transition">
+                <button
+                  className="bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800 transition"
+                  onClick={() => navigate(isLoggedIn ? "/dashboard" : "/login")}
+                >
                   Generate an invoice
                 </button>
               </div>
@@ -60,7 +65,10 @@ function App() {
                 Simplify your invoicing process with FastVoicer. <br />
                 Create professional invoices in seconds.
               </p>
-              <button className="mt-8 bg-black text-white px-8 py-4 text-lg rounded-full hover:bg-gray-800 transition">
+              <button
+                className="mt-8 bg-black text-white px-8 py-4 text-lg rounded-full hover:bg-gray-800 transition"
+                onClick={() => navigate(isLoggedIn ? "/dashboard" : "/login")}
+              >
                 Create an Invoice
               </button>
             </div>
@@ -85,6 +93,7 @@ function App() {
       />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signin />} />
+      <Route path="/dashboard" element={<DashBoard />} /> {/* Add DashBoard route */}
     </Routes>
   );
 }

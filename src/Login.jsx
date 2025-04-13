@@ -13,8 +13,9 @@ function Login() {
     const user = existingUsers.find((user) => user.email === email && user.password === password);
 
     if (user) {
-      setMessage({ text: "Logged in successfully! Redirecting to home.", type: "success" });
-      setTimeout(() => navigate("/"), 2000);
+      localStorage.setItem("isLoggedIn", "true"); // Set login flag
+      setMessage({ text: "Logged in successfully! Redirecting to dashboard.", type: "success" });
+      setTimeout(() => navigate("/dashboard"), 2000);
     } else {
       setMessage({ text: "Invalid email or password. Please try again.", type: "error" });
     }

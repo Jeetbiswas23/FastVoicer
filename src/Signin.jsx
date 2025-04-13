@@ -19,8 +19,9 @@ function Signin() {
     } else {
       const newUser = { name, email, password };
       localStorage.setItem("users", JSON.stringify([...existingUsers, newUser]));
-      setMessage({ text: "Account created successfully! Redirecting to login.", type: "success" });
-      setTimeout(() => navigate("/login"), 2000);
+      localStorage.setItem("isLoggedIn", "true"); // Set login flag
+      setMessage({ text: "Account created successfully! Redirecting to dashboard.", type: "success" });
+      setTimeout(() => navigate("/dashboard"), 2000);
     }
   };
 
