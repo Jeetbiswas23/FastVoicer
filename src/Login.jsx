@@ -4,13 +4,20 @@ import { useNavigate } from "react-router-dom";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [message, setMessage] = useState({ text: "", type: "" });
   const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
-    // Add authentication logic here
-    alert("Logged in successfully!");
-    navigate("/");
+    const existingUsers = JSON.parse(localStorage.getItem("users")) || [];
+    const user = existingUsers.find((user) => user.email === email && user.password === password);
+
+    if (user) {
+      setMessage({ text: "Logged in successfully! Redirecting to home.", type: "success" });
+      setTimeout(() => navigate("/"), 2000);
+    } else {
+      setMessage({ text: "Invalid email or password. Please try again.", type: "error" });
+    }
   };
 
   return (
@@ -26,6 +33,13 @@ function Login() {
       </div>
       <h2 className="text-2xl font-bold mb-6">Log in</h2>
       <form onSubmit={handleLogin} className="w-full max-w-sm">
+        <div className="mb-4">
+          {message.text && (
+            <p className={`text-center ${message.type === "error" ? "text-red-500" : "text-green-500"}`}>
+              {message.text}
+            </p>
+          )}
+        </div>
         <div className="mb-4">
           <label className="block text-gray-700 font-medium mb-2" htmlFor="email">
             Email

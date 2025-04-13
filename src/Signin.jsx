@@ -5,6 +5,7 @@ function Signin() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [message, setMessage] = useState({ text: "", type: "" });
   const navigate = useNavigate();
 
   const handleSignin = (e) => {
@@ -13,13 +14,13 @@ function Signin() {
     const userExists = existingUsers.some((user) => user.email === email);
 
     if (userExists) {
-      alert("Email already exists! Redirecting to login.");
-      navigate("/login");
+      setMessage({ text: "Email already exists! Redirecting to login.", type: "error" });
+      setTimeout(() => navigate("/login"), 2000);
     } else {
       const newUser = { name, email, password };
       localStorage.setItem("users", JSON.stringify([...existingUsers, newUser]));
-      alert("Account created successfully!");
-      navigate("/login");
+      setMessage({ text: "Account created successfully! Redirecting to login.", type: "success" });
+      setTimeout(() => navigate("/login"), 2000);
     }
   };
 
@@ -49,6 +50,13 @@ function Signin() {
           className="w-1/2 p-6"
         >
           <h2 className="text-2xl font-bold mb-6 text-center">Sign Up</h2>
+          <div className="mb-4">
+            {message.text && (
+              <p className={`text-center ${message.type === "error" ? "text-red-500" : "text-green-500"}`}>
+                {message.text}
+              </p>
+            )}
+          </div>
           <div className="mb-4">
             <label className="block text-gray-700 font-medium mb-2" htmlFor="name">
               Name
