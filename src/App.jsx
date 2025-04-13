@@ -22,6 +22,19 @@ function App() {
           </button>
         </div>
       </nav>
+
+      {/* Middle Section */}
+      <div className="flex flex-col items-center justify-center h-screen text-center">
+        <h1 className="text-black text-4xl font-bold">Create.</h1>
+        <h1 className="text-black text-4xl font-bold">Send. Get Paid.</h1>
+        <p className="text-black text-lg mt-4">
+          Simplify your invoicing process with FastVoicer. <br />
+          Create professional invoices in seconds.
+        </p>
+        <button className="mt-6 bg-black text-white px-6 py-3 rounded-full hover:bg-gray-800 transition">
+          Create an Invoice
+        </button>
+      </div>
       {/* ...existing code... */}
     </div>
   );
