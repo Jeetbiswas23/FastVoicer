@@ -9,9 +9,18 @@ function Signin() {
 
   const handleSignin = (e) => {
     e.preventDefault();
-    // Add sign-in logic here
-    alert("Account created successfully!");
-    navigate("/login");
+    const existingUsers = JSON.parse(localStorage.getItem("users")) || [];
+    const userExists = existingUsers.some((user) => user.email === email);
+
+    if (userExists) {
+      alert("Email already exists! Redirecting to login.");
+      navigate("/login");
+    } else {
+      const newUser = { name, email, password };
+      localStorage.setItem("users", JSON.stringify([...existingUsers, newUser]));
+      alert("Account created successfully!");
+      navigate("/login");
+    }
   };
 
   return (
