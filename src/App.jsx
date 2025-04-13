@@ -1,6 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
+import "aos/dist/aos.css";
+import AOS from "aos";
 
 function App() {
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+  }, []);
+
   return (
     <div>
       {/* Navbar */}
@@ -38,6 +44,22 @@ function App() {
         <button className="mt-8 bg-black text-white px-8 py-4 text-lg rounded-full hover:bg-gray-800 transition">
           Create an Invoice
         </button>
+      </div>
+
+      {/* Side Images */}
+      <div className="relative">
+        <img
+          src="/images/invoice.png"
+          alt="Invoice"
+          className="absolute left-0 top-1/4 w-1/4"
+          data-aos="fade-right"
+        />
+        <img
+          src="/images/crypto.png"
+          alt="Crypto Coins"
+          className="absolute right-0 top-1/4 w-1/4"
+          data-aos="fade-left"
+        />
       </div>
       {/* ...existing code... */}
     </div>
