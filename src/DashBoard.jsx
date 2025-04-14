@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Invoice from "./Invoice";
 import Payments from "./Payments";
 import Bills from "./Bills";
@@ -8,12 +8,23 @@ import { useNavigate } from "react-router-dom"; // Import for navigation
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState("Invoices");
   const [dropdownOpen, setDropdownOpen] = useState(false); // State for dropdown
+  const [isAuthenticated, setIsAuthenticated] = useState(true); // Authentication state
   const navigate = useNavigate(); // Hook for navigation
 
   const handleSignOut = () => {
-    // Logic for signing out
+    localStorage.removeItem("isLoggedIn"); // Clear login flag
+    localStorage.removeItem("currentUser"); // Clear current user
+    setIsAuthenticated(false); // Set authentication state to false
     navigate("/"); // Redirect to home page
   };
+
+  const currentUser = JSON.parse(localStorage.getItem("currentUser")); // Get current user
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate("/login"); // Redirect to login if not authenticated
+    }
+  }, [isAuthenticated, navigate]);
 
   const renderContent = () => {
     switch (activeTab) {
@@ -84,8 +95,8 @@ const Dashboard = () => {
             </button>
             {dropdownOpen && (
               <div className="absolute bottom-full mb-2 w-full bg-white border rounded shadow-lg">
-                <div className="p-2 text-black">Name: Jeet</div>
-                <div className="p-2 text-black">Email: jeet@example.com</div>
+                <div className="p-2 text-black">Name: {currentUser?.name}</div>
+                <div className="p-2 text-black">Email: {currentUser?.email}</div>
                 <button
                   className="w-full text-left p-2 bg-black text-white rounded hover:bg-gray-800 transition"
                   onClick={handleSignOut}

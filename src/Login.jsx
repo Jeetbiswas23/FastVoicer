@@ -14,6 +14,7 @@ function Login() {
 
     if (user) {
       localStorage.setItem("isLoggedIn", "true"); // Set login flag
+      localStorage.setItem("currentUser", JSON.stringify(user)); // Store current user
       setMessage({ text: "Logged in successfully! Redirecting to dashboard.", type: "success" });
       setTimeout(() => navigate("/dashboard"), 2000);
     } else {

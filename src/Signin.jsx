@@ -20,6 +20,7 @@ function Signin() {
       const newUser = { name, email, password };
       localStorage.setItem("users", JSON.stringify([...existingUsers, newUser]));
       localStorage.setItem("isLoggedIn", "true"); // Set login flag
+      localStorage.setItem("currentUser", JSON.stringify(newUser)); // Store current user
       setMessage({ text: "Account created successfully! Redirecting to dashboard.", type: "success" });
       setTimeout(() => navigate("/dashboard"), 2000);
     }
