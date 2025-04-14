@@ -96,7 +96,7 @@ const Dashboard = () => {
               className="w-full p-1 border rounded text-black hover:bg-gray-200 transition"
               onClick={() => setDropdownOpen(!dropdownOpen)}
             >
-              Jeet
+              {currentUser?.name || "User"}
             </button>
             {dropdownOpen && (
               <div className="absolute bottom-full mb-2 w-full bg-white border rounded shadow-lg">
