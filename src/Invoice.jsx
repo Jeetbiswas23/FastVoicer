@@ -16,7 +16,7 @@ const Invoice = () => {
             </p>
             <div className="flex gap-4">
               <button className="bg-black text-white px-4 py-2 rounded-md hover:bg-gray-800">
-                Create invoice
+                +  Create invoice
               </button>
               <button className="text-sm text-gray-700 hover:underline">
                 Learn more
