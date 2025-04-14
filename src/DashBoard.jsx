@@ -27,10 +27,10 @@ const Dashboard = () => {
       {/* Sidebar */}
       <aside className="w-60 bg-white border-r p-5 flex flex-col justify-between h-screen overflow-hidden">
         <div>
-          <h1 className="text-2xl font-bold mb-6">FastVoicer</h1>
-          <nav className="space-y-4 text-sm font-medium">
+          <h1 className="text-2xl font-bold mb-10">FastVoicer</h1> {/* Increased spacing */}
+          <nav className="space-y-6 text-base font-medium"> {/* Increased font size */}
             <div
-              className={`flex items-center gap-2 cursor-pointer ${
+              className={`flex items-center gap-3 cursor-pointer ${
                 activeTab === "Invoices" ? "text-black" : "text-gray-500 hover:text-black"
               }`}
               onClick={() => setActiveTab("Invoices")}
