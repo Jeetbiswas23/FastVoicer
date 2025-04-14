@@ -5,6 +5,7 @@ import AOS from "aos";
 import Login from "./Login";
 import Signin from "./Signin";
 import DashBoard from "./DashBoard"; // Import DashBoard
+import Onboarding from "./Onboarding"; // Import Onboarding
 
 function App() {
   const navigate = useNavigate();
@@ -94,6 +95,7 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signin />} />
       <Route path="/dashboard" element={<DashBoard />} /> {/* Add DashBoard route */}
+      <Route path="/onboarding" element={<Onboarding />} /> {/* Add Onboarding route */}
     </Routes>
   );
 }
