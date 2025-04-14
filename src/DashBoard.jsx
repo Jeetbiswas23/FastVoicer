@@ -46,7 +46,12 @@ const Dashboard = () => {
       {/* Sidebar */}
       <aside className="w-60 bg-white border-r p-5 flex flex-col justify-between h-screen overflow-hidden">
         <div>
-          <h1 className="text-2xl font-bold mb-10">FastVoicer</h1>
+          <h1
+            className="text-2xl font-bold mb-10 cursor-pointer"
+            onClick={() => navigate("/")} // Redirect to App.jsx
+          >
+            FastVoicer
+          </h1>
           <nav className="space-y-6 text-base font-medium">
             <button
               className={`flex items-center gap-3 w-full text-left cursor-pointer ${
