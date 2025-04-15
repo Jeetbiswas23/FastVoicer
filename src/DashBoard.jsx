@@ -6,7 +6,7 @@ import Contacts from "./Contacts";
 import { useNavigate } from "react-router-dom"; // Import for navigation
 
 const Dashboard = () => {
-  const [activeTab, setActiveTab] = useState("Invoices");
+  const [activeTab, setActiveTab] = useState(() => localStorage.getItem("activeTab") || "Invoices"); // Retrieve from localStorage
   const [dropdownOpen, setDropdownOpen] = useState(false); // State for dropdown
   const [isAuthenticated, setIsAuthenticated] = useState(true); // Authentication state
   const navigate = useNavigate(); // Hook for navigation
@@ -16,6 +16,11 @@ const Dashboard = () => {
     localStorage.removeItem("currentUser"); // Clear current user
     setIsAuthenticated(false); // Set authentication state to false
     navigate("/"); // Redirect to home page
+  };
+
+  const handleTabChange = (tab) => {
+    setActiveTab(tab);
+    localStorage.setItem("activeTab", tab); // Save to localStorage
   };
 
   const currentUser = JSON.parse(localStorage.getItem("currentUser")); // Get current user
@@ -57,7 +62,7 @@ const Dashboard = () => {
               className={`flex items-center gap-3 w-full text-left cursor-pointer ${
                 activeTab === "Invoices" ? "text-black" : "text-gray-500 hover:text-black"
               }`}
-              onClick={() => setActiveTab("Invoices")}
+              onClick={() => handleTabChange("Invoices")} // Use handleTabChange
             >
               <span>📄</span> Invoices
             </button>
@@ -65,7 +70,7 @@ const Dashboard = () => {
               className={`flex items-center gap-3 w-full text-left cursor-pointer ${
                 activeTab === "Payments" ? "text-black" : "text-gray-500 hover:text-black"
               }`}
-              onClick={() => setActiveTab("Payments")}
+              onClick={() => handleTabChange("Payments")} // Use handleTabChange
             >
               <span>💸</span> Payments
             </button>
@@ -73,7 +78,7 @@ const Dashboard = () => {
               className={`flex items-center gap-3 w-full text-left cursor-pointer ${
                 activeTab === "Bills" ? "text-black" : "text-gray-500 hover:text-black"
               }`}
-              onClick={() => setActiveTab("Bills")}
+              onClick={() => handleTabChange("Bills")} // Use handleTabChange
             >
               <span>📋</span> Bills
             </button>
@@ -81,7 +86,7 @@ const Dashboard = () => {
               className={`flex items-center gap-3 w-full text-left cursor-pointer ${
                 activeTab === "Contacts" ? "text-black" : "text-gray-500 hover:text-black"
               }`}
-              onClick={() => setActiveTab("Contacts")}
+              onClick={() => handleTabChange("Contacts")} // Use handleTabChange
             >
               <span>🔗</span> Contacts
             </button>
