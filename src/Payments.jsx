@@ -9,9 +9,9 @@ const Payments = () => {
 
       <div className="bg-white border border-gray-200 p-4 rounded-lg shadow-sm mb-6 flex items-center justify-between">
         <div>
-          <p className="font-medium">✨ Offer more methods, get paid faster</p>
+          <p className="font-medium">✨ Expand your payment options and get paid faster</p>
           <p className="text-sm text-gray-600">
-            Receive money to your preferred wallet or bank account, no matter how your client pays.
+            Seamlessly receive payments directly to your preferred wallet or bank account, no matter how your clients choose to pay.
           </p>
         </div>
         <a href="#" className="text-blue-600 font-medium hover:underline">Activate &gt;</a>
@@ -34,22 +34,23 @@ const Payments = () => {
 
       {activeTab === "Receive" ? (
         <div className="flex flex-col items-center justify-center text-center mt-24">
-          <div className="flex space-x-3 mb-6 opacity-60">
-            <div className="w-10 h-10 bg-green-200 rounded-full"></div>
-            <div className="w-10 h-10 bg-blue-200 rounded-full"></div>
-            <div className="w-10 h-10 bg-green-400 rounded-full"></div>
-            <div className="w-10 h-10 bg-blue-300 rounded-full"></div>
+          <div className="relative w-32 h-10 flex items-center justify-center mb-6">
+            <div className="absolute w-full h-full animate-oscillate">
+              <div className="flex space-x-3">
+                <div className="w-10 h-10 bg-green-200 rounded-full"></div>
+                <div className="w-10 h-10 bg-blue-200 rounded-full"></div>
+                <div className="w-10 h-10 bg-green-400 rounded-full"></div>
+                <div className="w-10 h-10 bg-blue-300 rounded-full"></div>
+              </div>
+            </div>
           </div>
-
           <h2 className="text-xl font-semibold text-gray-800 mb-2">Add flexible payment options</h2>
           <p className="text-gray-600 max-w-md mb-4">
             Choose how you want to get paid and we’ll create multiple ways for your clients to pay you
           </p>
-
           <button className="bg-black text-white py-2 px-4 rounded hover:bg-gray-800">
             + Add flexible payment option
           </button>
-
           <a href="#" className="text-sm text-blue-600 mt-2 hover:underline">Learn more</a>
         </div>
       ) : (

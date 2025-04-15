@@ -24,20 +24,21 @@ const PaymentsTransfer = () => {
 
       {/* Start First Transfer Section */}
       <div className="text-center mt-20">
-        <div className="flex justify-center space-x-3 mb-4 opacity-60">
-          {/* Dummy tokens/icons */}
-          <div className="w-10 h-10 rounded-full bg-green-200" />
-          <div className="w-10 h-10 rounded-full bg-blue-300" />
-          <div className="w-10 h-10 rounded-full bg-blue-500" />
-          <div className="w-10 h-10 rounded-full bg-green-400" />
-          <div className="w-10 h-10 rounded-full bg-gray-300" />
+        <div className="relative w-32 h-10 flex items-center justify-center mb-4">
+          <div className="absolute w-full h-full animate-oscillate">
+            <div className="flex space-x-3">
+              <div className="w-10 h-10 rounded-full bg-green-200" />
+              <div className="w-10 h-10 rounded-full bg-blue-300" />
+              <div className="w-10 h-10 rounded-full bg-blue-500" />
+              <div className="w-10 h-10 rounded-full bg-green-400" />
+              <div className="w-10 h-10 rounded-full bg-gray-300" />
+            </div>
+          </div>
         </div>
-
         <h2 className="text-xl font-semibold mb-2">Start your first transfer</h2>
         <p className="text-gray-600 mb-4 max-w-md mx-auto">
           Easily send funds between your bank and crypto wallets or swap across chains
         </p>
-
         <div className="flex justify-center items-center space-x-4">
           <button className="bg-black text-white px-4 py-2 rounded hover:bg-gray-800">
             + Transfer funds

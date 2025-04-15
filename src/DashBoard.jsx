@@ -23,6 +23,13 @@ const Dashboard = () => {
     localStorage.setItem("activeTab", tab); // Save to localStorage
   };
 
+  useEffect(() => {
+    const savedTab = localStorage.getItem("activeTab");
+    if (savedTab) {
+      setActiveTab(savedTab); // Ensure state is in sync with localStorage
+    }
+  }, []);
+
   const currentUser = JSON.parse(localStorage.getItem("currentUser")); // Get current user
 
   useEffect(() => {
@@ -47,9 +54,9 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="flex min-h-screen bg-gray-100 text-gray-800">
+    <div className="flex h-screen bg-gray-100 text-gray-800">
       {/* Sidebar */}
-      <aside className="w-60 bg-white border-r p-5 flex flex-col justify-between h-screen overflow-hidden">
+      <aside className="fixed top-0 left-0 w-60 bg-white border-r p-5 flex flex-col justify-between h-full">
         <div>
           <h1
             className="text-2xl font-bold mb-10 cursor-pointer"
@@ -120,7 +127,7 @@ const Dashboard = () => {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 p-10">{renderContent()}</main>
+      <main className="ml-60 flex-1 p-10 overflow-y-auto h-full">{renderContent()}</main>
     </div>
   );
 };
