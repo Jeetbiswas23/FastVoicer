@@ -66,7 +66,7 @@ const Dashboard = () => {
           </h1>
           <nav className="space-y-6 text-base font-medium">
             <button
-              className={`flex items-center gap-3 w-full text-left cursor-pointer ${
+              className={`flex items-center gap-3 w-full text-left cursor-pointer transition duration-300 ease-in-out ${
                 activeTab === "Invoices" ? "text-black" : "text-gray-500 hover:text-black"
               }`}
               onClick={() => handleTabChange("Invoices")} // Use handleTabChange
@@ -74,7 +74,7 @@ const Dashboard = () => {
               <span>📄</span> Invoices
             </button>
             <button
-              className={`flex items-center gap-3 w-full text-left cursor-pointer ${
+              className={`flex items-center gap-3 w-full text-left cursor-pointer transition duration-300 ease-in-out ${
                 activeTab === "Payments" ? "text-black" : "text-gray-500 hover:text-black"
               }`}
               onClick={() => handleTabChange("Payments")} // Use handleTabChange
@@ -82,7 +82,7 @@ const Dashboard = () => {
               <span>💸</span> Payments
             </button>
             <button
-              className={`flex items-center gap-3 w-full text-left cursor-pointer ${
+              className={`flex items-center gap-3 w-full text-left cursor-pointer transition duration-300 ease-in-out ${
                 activeTab === "Bills" ? "text-black" : "text-gray-500 hover:text-black"
               }`}
               onClick={() => handleTabChange("Bills")} // Use handleTabChange
@@ -90,7 +90,7 @@ const Dashboard = () => {
               <span>📋</span> Bills
             </button>
             <button
-              className={`flex items-center gap-3 w-full text-left cursor-pointer ${
+              className={`flex items-center gap-3 w-full text-left cursor-pointer transition duration-300 ease-in-out ${
                 activeTab === "Contacts" ? "text-black" : "text-gray-500 hover:text-black"
               }`}
               onClick={() => handleTabChange("Contacts")} // Use handleTabChange
@@ -105,17 +105,17 @@ const Dashboard = () => {
           <div>Settings</div>
           <div className="relative">
             <button
-              className="w-full p-1 border rounded text-black hover:bg-gray-200 transition"
+              className="w-full p-1 border rounded text-black hover:bg-gray-200 transition duration-300 ease-in-out"
               onClick={() => setDropdownOpen(!dropdownOpen)}
             >
               {currentUser?.name || "User"}
             </button>
             {dropdownOpen && (
-              <div className="absolute bottom-full mb-2 w-full bg-white border rounded shadow-lg">
+              <div className="absolute bottom-full mb-2 w-full bg-white border rounded shadow-lg transition duration-300 ease-in-out">
                 <div className="p-2 text-black">Name: {currentUser?.name}</div>
                 <div className="p-2 text-black">Email: {currentUser?.email}</div>
                 <button
-                  className="w-full text-left p-2 bg-black text-white rounded hover:bg-gray-800 transition"
+                  className="w-full text-left p-2 bg-black text-white rounded hover:bg-gray-800 transition duration-300 ease-in-out"
                   onClick={handleSignOut}
                 >
                   Sign Out

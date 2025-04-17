@@ -12,7 +12,7 @@ const PaymentsTransfer = () => {
             </div>
             <span className="text-xs bg-gray-100 px-2 py-0.5 rounded-full text-gray-600">US</span>
           </div>
-          <button className="text-sm text-blue-600 hover:underline">Activate</button>
+          <button className="text-sm text-blue-600 hover:underline transition duration-300 ease-in-out">Activate</button>
         </div>
         <div>
           <p className="font-medium">Transfer funds</p>
@@ -40,10 +40,10 @@ const PaymentsTransfer = () => {
           Easily send funds between your bank and crypto wallets or swap across chains
         </p>
         <div className="flex justify-center items-center space-x-4">
-          <button className="bg-black text-white px-4 py-2 rounded hover:bg-gray-800">
+          <button className="bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition duration-300 ease-in-out">
             + Transfer funds
           </button>
-          <a href="#" className="text-blue-600 hover:underline">Learn more</a>
+          <a href="#" className="text-blue-600 hover:underline transition duration-300 ease-in-out">Learn more</a>
         </div>
       </div>
     </div>

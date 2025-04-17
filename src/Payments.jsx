@@ -19,13 +19,17 @@ const Payments = () => {
 
       <div className="flex space-x-4 border-b border-gray-300 mb-8">
         <button
-          className={`pb-2 font-medium ${activeTab === "Receive" ? "text-gray-800 border-b-2 border-black" : "text-gray-500"}`}
+          className={`pb-2 font-medium transition duration-300 ease-in-out ${
+            activeTab === "Receive" ? "text-gray-800 border-b-2 border-black" : "text-gray-500 hover:text-gray-800"
+          }`}
           onClick={() => setActiveTab("Receive")}
         >
           Receive
         </button>
         <button
-          className={`pb-2 font-medium ${activeTab === "Transfer" ? "text-gray-800 border-b-2 border-black" : "text-gray-500"}`}
+          className={`pb-2 font-medium transition duration-300 ease-in-out ${
+            activeTab === "Transfer" ? "text-gray-800 border-b-2 border-black" : "text-gray-500 hover:text-gray-800"
+          }`}
           onClick={() => setActiveTab("Transfer")}
         >
           Transfer
@@ -48,10 +52,10 @@ const Payments = () => {
           <p className="text-gray-600 max-w-md mb-4">
             Choose how you want to get paid and we’ll create multiple ways for your clients to pay you
           </p>
-          <button className="bg-black text-white py-2 px-4 rounded hover:bg-gray-800">
+          <button className="bg-black text-white py-2 px-4 rounded hover:bg-gray-800 transition duration-300 ease-in-out">
             + Add flexible payment option
           </button>
-          <a href="#" className="text-sm text-blue-600 mt-2 hover:underline">Learn more</a>
+          <a href="#" className="text-sm text-blue-600 mt-2 hover:underline transition duration-300 ease-in-out">Learn more</a>
         </div>
       ) : (
         <div className="p-6 bg-white min-h-screen text-gray-800">
@@ -88,10 +92,10 @@ const Payments = () => {
             </p>
 
             <div className="flex justify-center items-center space-x-4">
-              <button className="bg-black text-white px-4 py-2 rounded hover:bg-gray-800">
+              <button className="bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition duration-300 ease-in-out">
                 + Transfer funds
               </button>
-              <a href="#" className="text-blue-600 hover:underline">Learn more</a>
+              <a href="#" className="text-blue-600 hover:underline transition duration-300 ease-in-out">Learn more</a>
             </div>
           </div>
         </div>
