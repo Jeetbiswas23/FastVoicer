@@ -37,9 +37,30 @@ export default function InvoiceCreator() {
     total: 0,
   });
 
+  const [showForm, setShowForm] = useState(true); // State to toggle form visibility
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleFromClick = () => {
+    setActiveSection("Company");
+    setFormData((prev) => ({
+      ...prev,
+      company: invoice.from.name,
+      email: invoice.from.email,
+      address: "", // Add logic to populate address if available
+      city: "",
+      state: "",
+      zip: "",
+      country: "",
+      taxId: "",
+    }));
+  };
+
+  const handleCloseForm = () => {
+    setShowForm(false); // Only close the form
   };
 
   const renderForm = () => {
@@ -72,6 +93,14 @@ export default function InvoiceCreator() {
                 />
               </div>
               <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Logo</label>
+                <input
+                  type="file"
+                  name="logo"
+                  className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                />
+              </div>
+              <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Address</label>
                 <input
                   type="text"
@@ -82,7 +111,63 @@ export default function InvoiceCreator() {
                   className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                 />
               </div>
-              {/* ...other fields for city, state, zip, country, taxId... */}
+              <div className="flex gap-4">
+                <div className="w-1/2">
+                  <label className="block text-sm font-medium text-gray-700 mb-1">City</label>
+                  <input
+                    type="text"
+                    name="city"
+                    value={formData.city}
+                    onChange={handleChange}
+                    placeholder="Enter city"
+                    className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                  />
+                </div>
+                <div className="w-1/2">
+                  <label className="block text-sm font-medium text-gray-700 mb-1">State</label>
+                  <input
+                    type="text"
+                    name="state"
+                    value={formData.state}
+                    onChange={handleChange}
+                    placeholder="Enter state"
+                    className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                  />
+                </div>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Zip Code</label>
+                <input
+                  type="text"
+                  name="zip"
+                  value={formData.zip}
+                  onChange={handleChange}
+                  placeholder="Enter ZIP"
+                  className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Country</label>
+                <input
+                  type="text"
+                  name="country"
+                  value={formData.country}
+                  onChange={handleChange}
+                  placeholder="Enter country"
+                  className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Tax ID</label>
+                <input
+                  type="text"
+                  name="taxId"
+                  value={formData.taxId}
+                  onChange={handleChange}
+                  placeholder="Enter tax ID"
+                  className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                />
+              </div>
             </div>
           </div>
         );
@@ -169,22 +254,36 @@ export default function InvoiceCreator() {
   return (
     <div className="flex flex-col md:flex-row p-8 gap-8 bg-gray-50 rounded-lg shadow-lg">
       {/* Left Panel - Dynamic Form */}
-      <div className="w-full md:w-1/2 bg-white p-8 rounded-lg shadow-md">
-        {renderForm()}
-        <div className="flex justify-between mt-8">
-          <button className="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300">
-            Back
+      {showForm && (
+        <div className="w-full md:w-1/2 bg-white p-8 rounded-lg shadow-md relative max-h-[90vh] overflow-hidden">
+          {/* Close Button */}
+          <button
+            className="absolute top-4 right-4 text-gray-500 hover:text-black text-xl"
+            onClick={handleCloseForm}
+          >
+            &times;
           </button>
-          <button className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-            Next
-          </button>
+          <div className="h-full max-h-[80vh] overflow-y-auto pr-4">
+            {renderForm()}
+            <div className="flex justify-between mt-8">
+              <button className="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300">
+                Back
+              </button>
+              <button className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                Next
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Right Panel - Invoice Preview */}
-      <div className="w-full md:w-1/2 bg-white p-6 rounded-lg shadow-md space-y-6">
+      <div className="w-full md:w-1/2 bg-white p-6 rounded-lg shadow-md space-y-6 relative">
         {/* From Section */}
-        <div className="p-4 bg-gray-50 rounded-lg shadow-sm">
+        <div
+          className="p-4 bg-gray-50 rounded-lg shadow-sm cursor-pointer"
+          onClick={handleFromClick}
+        >
           <p className="text-sm text-gray-500 mb-1">FROM</p>
           <div className="flex items-center space-x-2">
             <div className="bg-gray-300 w-10 h-10 flex items-center justify-center rounded-full font-bold text-white">

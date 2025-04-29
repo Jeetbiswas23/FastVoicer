@@ -120,8 +120,8 @@ const Invoice = () => {
 
       {/* Popup */}
       {showPopup && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg shadow-lg w-full max-w-4xl p-6 relative">
+        <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-md flex items-center justify-center z-50">
+          <div className="bg-white bg-opacity-80 rounded-lg shadow-lg w-full max-w-4xl max-h-[90vh] overflow-y-auto p-6 relative">
             <button
               className="absolute top-4 right-4 text-gray-500 hover:text-black"
               onClick={() => setShowPopup(false)} // Close popup on button click
