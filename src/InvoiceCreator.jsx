@@ -252,10 +252,10 @@ export default function InvoiceCreator() {
   };
 
   return (
-    <div className="flex flex-col md:flex-row p-8 gap-8 bg-gray-50 rounded-lg shadow-lg">
+    <div className="flex flex-col md:flex-row h-screen p-8 gap-8 bg-gray-50 rounded-lg shadow-lg overflow-hidden">
       {/* Left Panel - Dynamic Form */}
       {showForm && (
-        <div className="w-full md:w-1/2 bg-white p-8 rounded-lg shadow-md relative max-h-[90vh] overflow-hidden">
+        <div className="w-full md:w-1/2 bg-white rounded-lg shadow-md relative flex flex-col">
           {/* Close Button */}
           <button
             className="absolute top-4 right-4 text-gray-500 hover:text-black text-xl"
@@ -263,22 +263,24 @@ export default function InvoiceCreator() {
           >
             &times;
           </button>
-          <div className="h-full max-h-[80vh] overflow-y-auto pr-4">
+          {/* Scrollable Content */}
+          <div className="flex-1 overflow-y-auto p-4">
             {renderForm()}
-            <div className="flex justify-between mt-8">
-              <button className="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300">
-                Back
-              </button>
-              <button className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-                Next
-              </button>
-            </div>
+          </div>
+          {/* Fixed Buttons */}
+          <div className="bg-white p-4 border-t border-gray-200 flex justify-between">
+            <button className="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300">
+              Save Draft
+            </button>
+            <button className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+              Next
+            </button>
           </div>
         </div>
       )}
 
       {/* Right Panel - Invoice Preview */}
-      <div className="w-full md:w-1/2 bg-white p-6 rounded-lg shadow-md space-y-6 relative">
+      <div className="w-full md:w-1/2 bg-white p-6 rounded-lg shadow-md space-y-6 relative overflow-hidden">
         {/* From Section */}
         <div
           className="p-4 bg-gray-50 rounded-lg shadow-sm cursor-pointer"

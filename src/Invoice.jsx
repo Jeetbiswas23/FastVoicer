@@ -120,16 +120,18 @@ const Invoice = () => {
 
       {/* Popup */}
       {showPopup && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-md flex items-center justify-center z-50">
-          <div className="bg-white bg-opacity-80 rounded-lg shadow-lg w-full max-w-4xl max-h-[90vh] overflow-y-auto p-6 relative">
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-lg flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg shadow-lg w-full max-w-4xl max-h-[90vh] overflow-hidden relative">
             <button
               className="absolute top-4 right-4 text-gray-500 hover:text-black"
               onClick={() => setShowPopup(false)} // Close popup on button click
             >
               &times;
             </button>
-            <h2 className="text-2xl font-bold mb-4 text-gray-800">Create Invoice</h2>
-            <InvoiceCreator /> {/* Render InvoiceCreator component */}
+            <h2 className="text-2xl font-bold mb-4 text-gray-800 p-6">Create Invoice</h2>
+            <div className="overflow-y-auto max-h-[calc(90vh-64px)]">
+              <InvoiceCreator /> {/* Render InvoiceCreator component */}
+            </div>
           </div>
         </div>
       )}
