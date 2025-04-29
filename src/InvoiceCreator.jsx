@@ -182,70 +182,56 @@ export default function InvoiceCreator() {
       </div>
 
       {/* Right Panel - Invoice Preview */}
-      <div className="w-full md:w-1/2 bg-white p-6 rounded-lg shadow-md">
-        <div className="flex justify-between border-b pb-4">
-          <div>
-            <p className="text-sm text-gray-500">INVOICE NO</p>
-            <p className="font-semibold">{invoice.invoiceNo}</p>
-          </div>
-          <div>
-            <p className="text-sm text-gray-500">ISSUED</p>
-            <p className="font-semibold">{invoice.issuedDate}</p>
-          </div>
-          <div>
-            <p className="text-sm text-gray-500">DUE DATE</p>
-            <p className="font-semibold">{invoice.dueDate}</p>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-2 gap-4 my-6">
-          <div>
-            <p className="text-sm text-gray-500 mb-1">FROM</p>
-            <div className="flex items-center space-x-2">
-              <div className="bg-gray-300 w-10 h-10 flex items-center justify-center rounded-full font-bold text-white">
-                J
-              </div>
-              <div>
-                <p className="font-semibold">{invoice.from.name}</p>
-                <p className="text-gray-600 text-sm">{invoice.from.email}</p>
-              </div>
+      <div className="w-full md:w-1/2 bg-white p-6 rounded-lg shadow-md space-y-6">
+        {/* From Section */}
+        <div className="p-4 bg-gray-50 rounded-lg shadow-sm">
+          <p className="text-sm text-gray-500 mb-1">FROM</p>
+          <div className="flex items-center space-x-2">
+            <div className="bg-gray-300 w-10 h-10 flex items-center justify-center rounded-full font-bold text-white">
+              J
             </div>
-          </div>
-          <div>
-            <p className="text-sm text-gray-500 mb-1">TO</p>
-            <div className="text-sm text-gray-700">
-              <p className="font-semibold">{invoice.to.name}</p>
-              {invoice.to.address.map((line, i) => (
-                <p key={i}>{line}</p>
-              ))}
+            <div>
+              <p className="font-semibold">{invoice.from.name}</p>
+              <p className="text-gray-600 text-sm">{invoice.from.email}</p>
             </div>
           </div>
         </div>
 
-        <div className="border-t border-b py-4">
-          <div className="grid grid-cols-4 font-semibold text-sm text-gray-500 mb-2">
-            <p>DESCRIPTION</p>
-            <p>QTY</p>
-            <p>PRICE</p>
-            <p>AMOUNT</p>
-          </div>
-          <div className="grid grid-cols-4 text-sm text-gray-700">
-            {invoice.items.map((item, index) => (
-              <React.Fragment key={index}>
-                <p>{item.description}</p>
-                <p>{item.quantity}</p>
-                <p>{item.price}</p>
-                <p>{item.amount}</p>
-              </React.Fragment>
+        {/* To Section */}
+        <div className="p-4 bg-gray-50 rounded-lg shadow-sm">
+          <p className="text-sm text-gray-500 mb-1">TO</p>
+          <div className="text-sm text-gray-700">
+            <p className="font-semibold">{invoice.to.name}</p>
+            {invoice.to.address.map((line, i) => (
+              <p key={i}>{line}</p>
             ))}
           </div>
         </div>
 
-        <div className="text-right mt-4 text-sm">
-          <p className="text-gray-500">Subtotal</p>
-          <p className="font-semibold">${invoice.subtotal.toFixed(2)}</p>
-          <p className="text-gray-500 mt-2">Total</p>
-          <p className="text-xl font-bold">${invoice.total.toFixed(2)}</p>
+        {/* Description/Price/Amount Section */}
+        <div className="p-4 bg-gray-50 rounded-lg shadow-sm">
+          <div className="border-t border-b py-4">
+            <div className="grid grid-cols-3 font-semibold text-sm text-gray-500 mb-2">
+              <p>DESCRIPTION</p>
+              <p>PRICE</p>
+              <p>AMOUNT</p>
+            </div>
+            <div className="grid grid-cols-3 text-sm text-gray-700">
+              {invoice.items.map((item, index) => (
+                <React.Fragment key={index}>
+                  <p>{item.description}</p>
+                  <p>{item.price}</p>
+                  <p>{item.amount}</p>
+                </React.Fragment>
+              ))}
+            </div>
+          </div>
+          <div className="text-right mt-4 text-sm">
+            <p className="text-gray-500">Subtotal</p>
+            <p className="font-semibold">${invoice.subtotal.toFixed(2)}</p>
+            <p className="text-gray-500 mt-2">Total</p>
+            <p className="text-xl font-bold">${invoice.total.toFixed(2)}</p>
+          </div>
         </div>
       </div>
     </div>
