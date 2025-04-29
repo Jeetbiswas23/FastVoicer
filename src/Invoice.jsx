@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import InvoiceCreator from "./InvoiceCreator"; // Import the InvoiceCreator component
 
 const tabs = ["Draft", "Unpaid", "Paid", "Void"];
 
 const Invoice = () => {
   const [activeTab, setActiveTab] = useState("Draft");
+  const [showPopup, setShowPopup] = useState(false); // State to toggle popup
 
   const renderTabContent = () => {
     switch (activeTab) {
@@ -14,14 +16,12 @@ const Invoice = () => {
             <p className="text-gray-500 mb-6 max-w-sm">
               Let customers pay how they want while you receive what you want.
             </p>
-            <div className="flex gap-4">
-              <button className="bg-black text-white px-4 py-2 rounded-md hover:bg-gray-800">
-                +  Create invoice
-              </button>
-              <button className="text-sm text-gray-700 hover:underline">
-                Learn more
-              </button>
-            </div>
+            <button
+              className="bg-black text-white px-4 py-2 rounded-md hover:bg-gray-800"
+              onClick={() => setShowPopup(true)} // Show popup on button click
+            >
+              + Create invoice
+            </button>
           </div>
         );
       case "Unpaid":
@@ -85,7 +85,10 @@ const Invoice = () => {
       {/* Header */}
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-3xl font-semibold">Invoices</h1>
-        <button className="bg-black text-white px-4 py-2 rounded-md hover:bg-gray-800">
+        <button
+          className="bg-black text-white px-4 py-2 rounded-md hover:bg-gray-800"
+          onClick={() => setShowPopup(true)} // Show popup on button click
+        >
           Create invoice
         </button>
       </div>
@@ -114,6 +117,22 @@ const Invoice = () => {
 
       {/* Tab Content */}
       <div>{renderTabContent()}</div>
+
+      {/* Popup */}
+      {showPopup && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg shadow-lg w-full max-w-4xl p-6 relative">
+            <button
+              className="absolute top-4 right-4 text-gray-500 hover:text-black"
+              onClick={() => setShowPopup(false)} // Close popup on button click
+            >
+              &times;
+            </button>
+            <h2 className="text-2xl font-bold mb-4 text-gray-800">Create Invoice</h2>
+            <InvoiceCreator /> {/* Render InvoiceCreator component */}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
