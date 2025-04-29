@@ -59,6 +59,21 @@ export default function InvoiceCreator() {
     }));
   };
 
+  const handleToClick = () => {
+    setActiveSection("Customer");
+    setFormData((prev) => ({
+      ...prev,
+      customerName: invoice.to.name,
+      customerEmail: "payables@acme.com", // Example email, replace with actual logic if needed
+      address: "",
+      city: "",
+      state: "",
+      zip: "",
+      country: "",
+      taxId: "",
+    }));
+  };
+
   const handleCloseForm = () => {
     setShowForm(false); // Only close the form
   };
@@ -194,11 +209,97 @@ export default function InvoiceCreator() {
                   name="customerEmail"
                   value={formData.customerEmail}
                   onChange={handleChange}
-                  placeholder="Enter email address"
+                  placeholder="payables@acme.com"
                   className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                 />
               </div>
-              {/* ...other fields for address, city, state, zip, country, taxId... */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Logo</label>
+                <input
+                  type="file"
+                  name="logo"
+                  className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Address</label>
+                <input
+                  type="text"
+                  name="address"
+                  value={formData.address}
+                  onChange={handleChange}
+                  placeholder="Enter address..."
+                  className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                />
+              </div>
+              <div className="flex gap-4">
+                <div className="w-1/2">
+                  <label className="block text-sm font-medium text-gray-700 mb-1">City</label>
+                  <input
+                    type="text"
+                    name="city"
+                    value={formData.city}
+                    onChange={handleChange}
+                    placeholder="Enter city..."
+                    className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                  />
+                </div>
+                <div className="w-1/2">
+                  <label className="block text-sm font-medium text-gray-700 mb-1">State</label>
+                  <input
+                    type="text"
+                    name="state"
+                    value={formData.state}
+                    onChange={handleChange}
+                    placeholder="Enter state..."
+                    className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                  />
+                </div>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Zip Code</label>
+                <input
+                  type="text"
+                  name="zip"
+                  value={formData.zip}
+                  onChange={handleChange}
+                  placeholder="Enter ZIP..."
+                  className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Country</label>
+                <input
+                  type="text"
+                  name="country"
+                  value={formData.country}
+                  onChange={handleChange}
+                  placeholder="Enter country..."
+                  className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Tax ID</label>
+                <input
+                  type="text"
+                  name="taxId"
+                  value={formData.taxId}
+                  onChange={handleChange}
+                  placeholder="Enter tax ID..."
+                  className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                />
+              </div>
+            </div>
+            <div className="flex justify-between mt-8">
+              <button
+                className="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300"
+                onClick={() => setActiveSection("Company")}
+              >
+                Back
+              </button>
+              <button className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                Save Draft
+              </button>
             </div>
           </div>
         );
@@ -299,7 +400,10 @@ export default function InvoiceCreator() {
         </div>
 
         {/* To Section */}
-        <div className="p-4 bg-gray-50 rounded-lg shadow-sm">
+        <div
+          className="p-4 bg-gray-50 rounded-lg shadow-sm cursor-pointer"
+          onClick={handleToClick}
+        >
           <p className="text-sm text-gray-500 mb-1">TO</p>
           <div className="text-sm text-gray-700">
             <p className="font-semibold">{invoice.to.name}</p>
